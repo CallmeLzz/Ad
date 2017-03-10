@@ -4,22 +4,22 @@
         <table style="width: 100%">
             <tr>
                 <th>ID</th>
-                <th>Title</th>
-                <th>Level</th>
+                <th>Name</th>
                 <th>Operations</th>
             </tr>
-            @if(isset($menu))
-                @foreach($menu as $value)
-                {!! Form::open(['route' => 'editMenu', 'method' => 'GET']) !!}
+            @if(isset($samples_edit))
+                {!! Form::open(['route'=>['admin_sample.post', 'id' => @$value->sample_id],  'files'=>true, 'method' => 'post'])  !!}
                     <tr>
-                        <td> {{ $value->menu_id }}</td>
-                        {!! Form::text('menu_id', $value->menu_id, array('hidden')) !!}
-                        <td>{!! Form::text('menu_title', $value->menu_title) !!}</td>
-                        <td>{!! Form::text('menu_level', $value->menu_level) !!}</td>
-                        <td>{!! Form::submit('Update') !!}</td>
+                        <td>{!! $samples_edit->sample_id !!}</td>
+                        <td>
+                            {!! Form::text('name', $samples_edit->sample_name) !!}
+                        </td>
+                        <td>
+                            {!! Form::submit('Update') !!}
+                            {!! Form::button('Cancel') !!}
+                        </td>
                     </tr>
                 {!! Form::close() !!}
-                @endforeach
             @endif
         </table>
     </div>
