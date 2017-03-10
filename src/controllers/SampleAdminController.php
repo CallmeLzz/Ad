@@ -4,6 +4,9 @@ namespace Source\Ad\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use URL;
+use Route,
+    Redirect;
 use Source\Ad\Models\Samples;
 
 Class SampleAdminController extends Controller
@@ -46,72 +49,29 @@ Class SampleAdminController extends Controller
         ));
         return view('ad::admin.sample.sample_index', $this->data_view);
     }
+    
+    public function delete(Request $request) {
 
-    /**
-     *
-     * @return type
-     */
-    public function post(Request $request) {
-        echo 'ssh';
-
-        /*$this->obj_validator = new SampleAdminValidator();
-
-        $input = $request->all();
-
-        $sample_id = (int) $request->get('id');
         $sample = NULL;
+        $sample_id = $request->get('id');
 
-        $data = array();
+        if (!empty($sample_id)) {
+            $sample = $this->obj_sample->find($sample_id);
 
-        if (!$this->obj_validator->validate($input)) {
+            if (!empty($sample)) {
+                  //Message
+                // \Session::flash('message', trans('sample::sample_admin.message_delete_successfully'));
 
-            $data['errors'] = $this->obj_validator->getErrors();
-
-            if (!empty($sample_id) && is_int($sample_id)) {
-
-                $sample = $this->obj_sample->find($sample_id);
+                $sample->delete();
             }
-
         } else {
-            if (!empty($sample_id) && is_int($sample_id)) {
 
-                $sample = $this->obj_sample->find($sample_id);
-
-                if (!empty($sample)) {
-
-                    $input['sample_id'] = $sample_id;
-                    $sample = $this->obj_sample->update_sample($input);
-
-                    //Message
-                    \Session::flash('message', trans('sample::sample_admin.message_update_successfully'));
-                    return Redirect::route("admin_sample.edit", ["id" => $sample->sample_id]);
-                } else {
-
-                    //Message
-                    \Session::flash('message', trans('sample::sample_admin.message_update_unsuccessfully'));
-                }
-            } else {
-
-                $sample = $this->obj_sample->add_sample($input);
-
-                if (!empty($sample)) {
-
-                    //Message
-                    \Session::flash('message', trans('sample::sample_admin.message_add_successfully'));
-                    return Redirect::route("admin_sample.edit", ["id" => $sample->sample_id]);
-                } else {
-
-                    //Message
-                    \Session::flash('message', trans('sample::sample_admin.message_add_unsuccessfully'));
-                }
-            }
         }
-
+        
         $this->data_view = array_merge($this->data_view, array(
-            'sample' => $sample,
-            'request' => $request,
-        ), $data);
+            'samples' => $sample,
+        ));
 
-        return view('sample::sample.admin.sample_edit', $this->data_view);*/
+        return Redirect::route("admin.sample");
     }
 }

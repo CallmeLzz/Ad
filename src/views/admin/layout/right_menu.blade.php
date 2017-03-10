@@ -1,18 +1,17 @@
 <div class="right-menu">
-	<form action="">
-	    <label>Search</label>
-	    <input type="text" name="key" placeholder="Enter your key...">
-	    <input type="submit" value="GO">
-	    <tr>
-            <label>Type: </label>
-            <td>
-                <select name="type" style="color: black;">
-                    <option value="id">ID</option>
-                    <option value="title">TITLE</option>
-                    <option value="level">LEVEL</option>
-                    <option value="parents">PARENTS</option>
-                </select>
-            </td>
-        </tr>
-	</form>
+    {!! Form::open(['route' => 'admin.sample','method' => 'get']) !!}
+	
+	    {!! Form::label('sample_name', 'Search') !!}
+        {!! Form::text('sample_name', @$params['sample_name'], ['class' => 'form-control', 'placeholder' => 'Sample name']) !!}
+	    {!! Form::submit('Search', ["class" => "btn btn-info pull-right"]) !!}	    
+   {!! Form::close() !!}
 </div>
+
+
+
+
+
+
+
+
+
