@@ -1,11 +1,8 @@
 <div class="nav-menu">
     <div class="container">
         <ul>
-            <li>
-                <a href="">Front</a>
-            </li>
             <li class="active">
-                <a href="#">Dashboard</a>
+                <a href="{{ route ('admin') }}">Dashboard</a>
             </li>
             <li>
                 <a href="#">Tables</a>
