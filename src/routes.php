@@ -10,3 +10,14 @@ Route::get('admin/sample', [
     'uses' => 'Source\Ad\Controllers\SampleAdminController@index'
 ]);
 
+ Route::post('admin/sample/edit', [
+    'as' => 'admin_sample.post',
+    'uses' => 'Source\Ad\Controllers\SampleAdminController@post'
+]);
+
+ //delete
+  Route::get('admin/sample/delete', [
+    'as' => 'admin_sample.delete',
+    'uses' => 'Source\Ad\Controllers\SampleAdminController@delete'
+]);
+

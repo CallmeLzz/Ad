@@ -19,7 +19,7 @@
                 <td>{{ $value['sample_name'] }}</td>
                 <td>
                     <a href="" class="btn btn-info pull left" style="margin-right:3px;">Edit</a>
-                    <button class="btn btn-danger pull left submitDelete" source="">Delete</button>
+                    <a href="{!! URL::route('admin_sample.delete',['id' =>  $value->sample_id, '_token' => csrf_token()]) !!}" class="btn btn-danger pull left submitDelete" source="">Delete</a>
                 </td>
             </tr>
             @endforeach
