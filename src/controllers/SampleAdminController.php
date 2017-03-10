@@ -49,6 +49,39 @@ Class SampleAdminController extends Controller
         ));
         return view('ad::admin.sample.sample_index', $this->data_view);
     }
+
+    public function post(Request $request){
+        $input = $request->all();
+
+        $sample_id = (int) $request->get('id');
+        $sample = NULL;
+
+        if (!empty($sample_id) && is_int($sample_id)) {
+
+                $sample = $this->obj_sample->find($sample_id);
+
+                if (!empty($sample)) {
+                    //success
+                    $input['sample_id'] = $sample_id;
+                    $sample = $this->obj_sample->update_sample($input);
+                    return Redirect::route("admin.sample", ["id" => $sample->sample_id]);
+                } else {
+                    //fail
+                    
+                }
+        } 
+        else {
+            //ADD
+            $sample = $this->obj_sample->add_sample($input);
+
+            if (!empty($sample)) {
+                //success
+                return Redirect::route("admin_sample.edit", ["id" => $sample->sample_id]);
+            } else {
+                //fail
+            }
+        }
+    }
     
     public function delete(Request $request) {
 
