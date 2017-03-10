@@ -19,7 +19,9 @@
     </div>
 
     <div class="col-md-3 block-right">
-        @include('ad::admin.layout.right_menu')
+       <!--  @include('ad::admin.layout.right_menu') -->     
+            @yield('right-menu')
+           
     </div>
 
 </body>

@@ -7,7 +7,7 @@
             <a href=""> Admin Page </a>
             <ul>
                 <li><a href="{{ route('admin.sample') }}"> Sample </a></li>
-                <li><a href=""> Category </a></li>
+                <li><a href="{{ route('admin.sample_category') }}"> Category </a></li>
             </ul>
         </li>
         <li>

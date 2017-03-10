@@ -22,5 +22,5 @@
 @endif
 
 @section('right-menu')
-	
+	@include('ad::admin.sample.sample_search')
 @stop

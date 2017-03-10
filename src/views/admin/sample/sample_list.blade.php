@@ -1,11 +1,11 @@
 <div class="admin-content">
     <div class="main">
-    <h3> Menu Page </h3>
-        <label> FEATURE: </label>
+    <h3 style="color:red;font-weight:bold;">SAMPLES</h3>
+      <!--   <label> FEATURE: </label> -->
         <a href="{{ URL::route('admin_sample.edit') }}" 
-            class="btn btn-info pull left" style="margin-right:3px;">Add</a>
+            class="btn btn-info pull left" style="margin-right:6px;margin-bottom: 20px;float:right;">Add New Sample</a>
         <a href="" 
-            class="btn btn-info pull left" style="margin-right:3px;">Export to Excel</a>
+            class="btn btn-info pull left" style="margin-right:6px;margin-bottom: 20px;float:right;">Export to Excel</a>
         <table style="width: 100%">
             <tr>
                 <th>ID</th>
