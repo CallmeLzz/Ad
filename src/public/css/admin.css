@@ -82,7 +82,7 @@ body {
   text-align: center;
 }
 .right-menu {
-  padding: 30px 15px;
+  padding: 45px 15px;
   background-color: #444;
   height: 100%;
   color: #fff;
@@ -92,4 +92,18 @@ body {
 }
 img {
   width: 100px;
+}
+
+.fa-search {
+    position: absolute;
+    top: 65px;
+    right: 15px;
+    padding: 6px 7px;
+    border-radius: 3px;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+    border: 1px solid #46b8da;
+}
+.fa-search:hover{
+  color: #fff;
 }

@@ -3,7 +3,7 @@
 	
 	    {!! Form::label('sample_name', 'Search') !!}
         {!! Form::text('sample_name', @$params['sample_name'], ['class' => 'form-control', 'placeholder' => 'Sample name']) !!}
-	    {!! Form::submit('Search', ["class" => "btn btn-info pull-right"]) !!}	    
+	    {!! Form::submit('Search', ["class" => "fa-search"]) !!}	    
    {!! Form::close() !!}
 </div>
 

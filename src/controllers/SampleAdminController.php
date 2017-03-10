@@ -1,29 +1,22 @@
 <?php
-
 namespace Source\Ad\Controllers;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use URL;
 use Route,
     Redirect;
 use Source\Ad\Models\Samples;
-
 Class SampleAdminController extends Controller
 {
-	public $data_view = array();
-	private $obj_sample = NULL;
-
-	public function __construct() {
+    public $data_view = array();
+    private $obj_sample = NULL;
+    public function __construct() {
         $this->obj_sample = new Samples();
     }
-
     public function index(Request $request)
     {
-    	$params = $request->all();
-
+        $params = $request->all();
         $list_sample = $this->obj_sample->get_samples($params);
-
         $this->data_view = array_merge($this->data_view, array(
             'samples' => $list_sample,
             'request' => $request,
@@ -31,7 +24,6 @@ Class SampleAdminController extends Controller
         ));
         return view('ad::admin.sample.sample_index', $this->data_view);
     }
-
     /**
      *
      * @return type
@@ -39,7 +31,6 @@ Class SampleAdminController extends Controller
     public function edit(Request $request) {
         $samples_edit = NULL;
         $sample_id = (int) $request->get('id');
-
         if (!empty($sample_id) && (is_int($sample_id))) {
             $samples_edit = $this->obj_sample->find($sample_id);
         }
@@ -55,17 +46,12 @@ Class SampleAdminController extends Controller
         }
         
     }
-
     public function post(Request $request){
         $input = $request->all();
-
         $sample_id = (int) $request->get('id');
         $sample = NULL;
-
         if (!empty($sample_id) && is_int($sample_id)) {
-
                 $sample = $this->obj_sample->find($sample_id);
-
                 if (!empty($sample)) {
                     //success
                     $input['sample_id'] = $sample_id;
@@ -79,7 +65,6 @@ Class SampleAdminController extends Controller
         else {
             //ADD
             $sample = $this->obj_sample->add_sample($input);
-
             if (!empty($sample)) {
                 //success
                 return Redirect::route("admin.sample", ["id" => $sample->sample_id]);
@@ -90,27 +75,21 @@ Class SampleAdminController extends Controller
     }
     
     public function delete(Request $request) {
-
         $sample = NULL;
         $sample_id = $request->get('id');
-
         if (!empty($sample_id)) {
             $sample = $this->obj_sample->find($sample_id);
-
             if (!empty($sample)) {
                   //Message
                 // \Session::flash('message', trans('sample::sample_admin.message_delete_successfully'));
-
                 $sample->delete();
             }
         } else {
-
         }
         
         $this->data_view = array_merge($this->data_view, array(
             'samples' => $sample,
         ));
-
         return Redirect::route("admin.sample");
     }
 }
