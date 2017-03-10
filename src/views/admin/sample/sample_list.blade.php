@@ -12,6 +12,7 @@
                 <th>Title</th>
                 <th>Operations</th>
             </tr>
+            
         @if(isset($samples))
             @foreach($samples as $value)
             <tr>
