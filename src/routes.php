@@ -9,3 +9,4 @@ Route::get('admin/sample', [
     'as' => 'admin.sample',
     'uses' => 'Source\Ad\Controllers\SampleAdminController@index'
 ]);
+

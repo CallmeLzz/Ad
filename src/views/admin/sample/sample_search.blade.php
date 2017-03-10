@@ -7,22 +7,20 @@
         <table style="width: 100%">
             <tr>
                 <th>ID</th>
-                <th>Title</th>
-                <th>Level</th>
+                <th>Name</th>
                 <th>Operations</th>
             </tr>
-            @if(isset($searchMenu))
-                @if(is_string($searchMenu))
-                    <label><font color="red"><?php echo $searchMenu; ?></font></label>
+            @if(isset($samples))
+                @if(is_string($samples))
+                    <label><font color="red"><?php echo $samples; ?></font></label>
                 @else
-                    @foreach($searchMenu as $value)
+                    @foreach($samples as $value)
                     <tr>
-                        <td>{{ $value['menu_id'] }}</td>
-                        <td>{{ $value['menu_title'] }}</td>
-                        <td>{{ $value['menu_level'] }}</td>
+                        <td>{{ $value['sample_id'] }}</td>
+                        <td>{{ $value['sample_name'] }}</td>                     
                         <td>
-                            <a href="{{ route('editMenu') }}?id={{ $value['menu_id'] }}" class="btn btn-info pull left" style="margin-right:3px;">Edit</a>
-                            <a href="{{ route('deleteMenu') }}?id={{ $value['menu_id'] }}" class="btn btn-danger pull left submitDelete" style="margin-right:3px;" source="{{ route('deleteMenu') }}?id={{ $value['menu_id'] }}">Delete</a>
+                            <a href="" class="btn btn-info pull left" style="margin-right:3px;">Edit</a>
+                            <a href="" class="btn btn-danger pull left submitDelete" style="margin-right:3px;" source="">Delete</a>
                         </td>
                     </tr>
                     @endforeach
