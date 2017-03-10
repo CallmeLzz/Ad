@@ -49,7 +49,71 @@ Class SampleAdminController extends Controller
         ));
         return view('ad::admin.sample.sample_index', $this->data_view);
     }
-    
+    ////////////////////////////ADD//////////////////////////////////////////////
+     public function post(Request $request) {
+
+        $this->obj_validator = new SampleAdminValidator();
+
+        $input = $request->all();
+
+        $sample_id = (int) $request->get('id');
+        $sample = NULL;
+
+        $data = array();
+
+        if (!$this->obj_validator->validate($input)) {
+
+            $data['errors'] = $this->obj_validator->getErrors();
+
+            if (!empty($sample_id) && is_int($sample_id)) {
+
+                $sample = $this->obj_sample->find($sample_id);
+            }
+
+        } else {
+            if (!empty($sample_id) && is_int($sample_id)) {
+
+                $sample = $this->obj_sample->find($sample_id);
+
+                if (!empty($sample)) {
+
+                    $input['sample_id'] = $sample_id;
+                    $sample = $this->obj_sample->update_sample($input);
+
+                    //Message
+                    // \Session::flash('message', trans('sample::sample_admin.message_update_successfully'));
+                    return Redirect::route("admin_sample.edit", ["id" => $sample->sample_id]);
+                } else {
+
+                    //Message
+                    // \Session::flash('message', trans('sample::sample_admin.message_update_unsuccessfully'));
+                }
+            } else {
+
+                $sample = $this->obj_sample->add_sample($input);
+
+                if (!empty($sample)) {
+
+                    //Message
+                    // \Session::flash('message', trans('sample::sample_admin.message_add_successfully'));
+                    return Redirect::route("admin_sample.edit", ["id" => $sample->sample_id]);
+                } else {
+
+                    //Message
+                    // \Session::flash('message', trans('sample::sample_admin.message_add_unsuccessfully'));
+                }
+            }
+        }
+
+        $this->data_view = array_merge($this->data_view, array(
+            'samples' => $sample,
+            'request' => $request,
+        ), $data);
+
+        return view('ad::admin.sample.sample_edit', $this->data_view);
+    }
+
+    ////////////////////////////////DELETE///////////////////////////////////////
     public function delete(Request $request) {
 
         $sample = NULL;

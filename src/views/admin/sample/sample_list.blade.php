@@ -2,7 +2,7 @@
     <div class="main">
     <h3> Menu Page </h3>
         <label> FEATURE: </label>
-        <a href="" 
+        <a href="{!! URL::route('admin_sample.post') !!}" 
             class="btn btn-info pull left" style="margin-right:3px;">Add</a>
         <a href="" 
             class="btn btn-info pull left" style="margin-right:3px;">Export to Excel</a>
