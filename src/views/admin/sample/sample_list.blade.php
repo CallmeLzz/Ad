@@ -6,6 +6,7 @@
             class="btn btn-info pull left" style="margin-right:6px;margin-bottom: 20px;float:right;">Add New Sample</a>
         <a href="" 
             class="btn btn-info pull left" style="margin-right:6px;margin-bottom: 20px;float:right;">Export to Excel</a>
+
         <table style="width: 100%">
             <tr>
                 <th>ID</th>
