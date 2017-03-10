@@ -26,7 +26,7 @@ Class AdController extends Controller
             'request' => $request,
             'params' => $params
         ));
-        return view('ad::admin.page.index', $this->data_view);
+        return view('ad::admin.sample.sample_index', $this->data_view);
     	//var_dump(base_path());
     	//var_dump(public_path());
     	//return view('ad::admin.masterpage', array());
