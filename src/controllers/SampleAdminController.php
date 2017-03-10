@@ -6,7 +6,6 @@ use URL;
 use Route,
     Redirect;
 use Source\Ad\Models\Samples;
-use Source\Ad\Validators\SampleAdminValidator;
 Class SampleAdminController extends Controller
 {
     public $data_view = array();
@@ -67,22 +66,8 @@ Class SampleAdminController extends Controller
                 //fail
             }
         }
-
-        $this->data_view = array_merge($this->data_view, array(
-            'samples_edit' => $sample,
-            'request' => $request,
-        ), $data);
-
-        return view('ad::admin.sample.sample_index', $this->data_view);
     }
     
-   
-
-
-
-
-
-
     public function delete(Request $request) {
         $sample = NULL;
         $sample_id = $request->get('id');
