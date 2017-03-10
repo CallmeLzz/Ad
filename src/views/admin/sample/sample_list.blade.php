@@ -5,7 +5,7 @@
         <a href="{{ URL::route('admin_sample.edit') }}" 
             class="btn btn-info pull left" style="margin-right:3px;">Add</a>
         <a href="" 
-            class="btn btn-info pull left" style="margin-right:3px;">Export to Excel</a>
+            class="btn btn-danger pull left" style="margin-right:3px;">Export to Excel</a>
         <table style="width: 100%">
             <tr>
                 <th>ID</th>
