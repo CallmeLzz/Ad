@@ -2,7 +2,7 @@
     <div class="main">
     <h3> Menu Page </h3>
         <label> FEATURE: </label>
-        <a href="{!! URL::route('admin_sample.post') !!}" 
+        <a href="{{ URL::route('admin_sample.edit') }}" 
             class="btn btn-info pull left" style="margin-right:3px;">Add</a>
         <a href="" 
             class="btn btn-info pull left" style="margin-right:3px;">Export to Excel</a>
@@ -12,6 +12,7 @@
                 <th>Title</th>
                 <th>Operations</th>
             </tr>
+            
         @if(isset($samples))
             @foreach($samples as $value)
             <tr>

@@ -5,32 +5,14 @@
         <label><font color="red"><?php echo $message; ?></font></label>
     @endif
         <table style="width: 100%">
-            {!! Form::open(['route' => 'addMenu', 'method' => 'GET']) !!}
-                <tr> 
-                    <th> {!! Form::label('Title') !!} </th>
-                    <td> {!! Form::text('title', null, array('autofocus' => 'autofocus')) !!} </td>
-                </tr>
+            {!! Form::open(['route'=> 'admin_sample.post', 'files'=>true, 'method' => 'post'])  !!}
                 <tr>
-                    <th> {!! Form::label('Level') !!}</th>
-                    <td> 
-                        {!! 
-                            Form::select('level', [
-                                '1' => '1', 
-                                '2' => '2', 
-                                '3' => '3'
-                                ]) 
-                        !!}
-                    </td>
-                </tr>
-                <tr>
-                    <th>Parents</th>
-                    <td>
-                        {!! Form::select('parents', array('' => '') + $menuID) !!}
-                    </td>
+                    <th> {!! Form::label('Name') !!} </th>
+                    <td> {!! Form::text('sample_name', null, array('autofocus' => 'autofocus')) !!} </td>
                 </tr>
                 <tr>
                     <th>Operations</th>
-                    <td>{!! Form::submit('Add') !!}</td>
+                    <td>{!! Form::submit('Add', ['class' => 'btn btn-info']) !!}</td>
                 </tr>
             {!! Form::close() !!}
         </table>
