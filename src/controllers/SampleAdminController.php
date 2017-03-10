@@ -37,17 +37,23 @@ Class SampleAdminController extends Controller
      * @return type
      */
     public function edit(Request $request) {
-        $sample = NULL;
+        $samples_edit = NULL;
         $sample_id = (int) $request->get('id');
 
         if (!empty($sample_id) && (is_int($sample_id))) {
-            $sample = $this->obj_sample->find($sample_id);
+            $samples_edit = $this->obj_sample->find($sample_id);
         }
-        $this->data_view = array_merge($this->data_view, array(
-            'samples_edit' => $sample,
-            'request' => $request
-        ));
-        return view('ad::admin.sample.sample_index', $this->data_view);
+        if ($samples_edit != NULL){
+            $this->data_view = array_merge($this->data_view, array(
+                'samples_edit' => $samples_edit,
+                'request' => $request
+            ));
+            return view('ad::admin.sample.sample_index', $this->data_view);
+        }
+        else {
+            return view('ad::admin.sample.sample_index');
+        }
+        
     }
 
     public function post(Request $request){
@@ -76,7 +82,7 @@ Class SampleAdminController extends Controller
 
             if (!empty($sample)) {
                 //success
-                return Redirect::route("admin_sample.edit", ["id" => $sample->sample_id]);
+                return Redirect::route("admin.sample", ["id" => $sample->sample_id]);
             } else {
                 //fail
             }
