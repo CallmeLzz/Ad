@@ -1,29 +1,22 @@
 <?php
-
 namespace Source\Ad\Controllers;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use URL;
 use Route,
     Redirect;
 use Source\Ad\Models\Samples;
-
 Class SampleAdminController extends Controller
 {
-	public $data_view = array();
-	private $obj_sample = NULL;
-
-	public function __construct() {
+    public $data_view = array();
+    private $obj_sample = NULL;
+    public function __construct() {
         $this->obj_sample = new Samples();
     }
-
     public function index(Request $request)
     {
-    	$params = $request->all();
-
+        $params = $request->all();
         $list_sample = $this->obj_sample->get_samples($params);
-
         $this->data_view = array_merge($this->data_view, array(
             'samples' => $list_sample,
             'request' => $request,
@@ -31,7 +24,6 @@ Class SampleAdminController extends Controller
         ));
         return view('ad::admin.sample.sample_index', $this->data_view);
     }
-
     /**
      *
      * @return type
@@ -39,7 +31,6 @@ Class SampleAdminController extends Controller
     public function edit(Request $request) {
         $sample = NULL;
         $sample_id = (int) $request->get('id');
-
         if (!empty($sample_id) && (is_int($sample_id))) {
             $sample = $this->obj_sample->find($sample_id);
         }
@@ -49,93 +40,50 @@ Class SampleAdminController extends Controller
         ));
         return view('ad::admin.sample.sample_index', $this->data_view);
     }
-    ////////////////////////////ADD//////////////////////////////////////////////
-     public function post(Request $request) {
-
-        $this->obj_validator = new SampleAdminValidator();
-
+    public function post(Request $request){
         $input = $request->all();
-
         $sample_id = (int) $request->get('id');
         $sample = NULL;
-
-        $data = array();
-
-        if (!$this->obj_validator->validate($input)) {
-
-            $data['errors'] = $this->obj_validator->getErrors();
-
-            if (!empty($sample_id) && is_int($sample_id)) {
-
+        if (!empty($sample_id) && is_int($sample_id)) {
                 $sample = $this->obj_sample->find($sample_id);
-            }
-
-        } else {
-            if (!empty($sample_id) && is_int($sample_id)) {
-
-                $sample = $this->obj_sample->find($sample_id);
-
                 if (!empty($sample)) {
-
+                    //success
                     $input['sample_id'] = $sample_id;
                     $sample = $this->obj_sample->update_sample($input);
-
-                    //Message
-                    // \Session::flash('message', trans('sample::sample_admin.message_update_successfully'));
-                    return Redirect::route("admin_sample.edit", ["id" => $sample->sample_id]);
+                    return Redirect::route("admin.sample", ["id" => $sample->sample_id]);
                 } else {
-
-                    //Message
-                    // \Session::flash('message', trans('sample::sample_admin.message_update_unsuccessfully'));
+                    //fail
+                    
                 }
+        } 
+        else {
+            //ADD
+            $sample = $this->obj_sample->add_sample($input);
+            if (!empty($sample)) {
+                //success
+                return Redirect::route("admin_sample.edit", ["id" => $sample->sample_id]);
             } else {
-
-                $sample = $this->obj_sample->add_sample($input);
-
-                if (!empty($sample)) {
-
-                    //Message
-                    // \Session::flash('message', trans('sample::sample_admin.message_add_successfully'));
-                    return Redirect::route("admin_sample.edit", ["id" => $sample->sample_id]);
-                } else {
-
-                    //Message
-                    // \Session::flash('message', trans('sample::sample_admin.message_add_unsuccessfully'));
-                }
+                //fail
             }
         }
-
-        $this->data_view = array_merge($this->data_view, array(
-            'samples' => $sample,
-            'request' => $request,
-        ), $data);
-
-        return view('ad::admin.sample.sample_edit', $this->data_view);
     }
-
-    ////////////////////////////////DELETE///////////////////////////////////////
+    
     public function delete(Request $request) {
-
         $sample = NULL;
         $sample_id = $request->get('id');
-
         if (!empty($sample_id)) {
             $sample = $this->obj_sample->find($sample_id);
-
             if (!empty($sample)) {
                   //Message
                 // \Session::flash('message', trans('sample::sample_admin.message_delete_successfully'));
-
                 $sample->delete();
             }
         } else {
-
         }
         
         $this->data_view = array_merge($this->data_view, array(
             'samples' => $sample,
         ));
-
         return Redirect::route("admin.sample");
     }
 }

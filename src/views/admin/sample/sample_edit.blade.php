@@ -8,11 +8,11 @@
                 <th>Operations</th>
             </tr>
             @if(isset($samples_edit))
-                {!! Form::open(['route'=>['admin_sample.post', 'id' => @$value->sample_id],  'files'=>true, 'method' => 'post'])  !!}
+                {!! Form::open(['route'=>['admin_sample.post', 'id' => @$samples_edit->sample_id],  'files'=>true, 'method' => 'post'])  !!}
                     <tr>
                         <td>{!! $samples_edit->sample_id !!}</td>
                         <td>
-                            {!! Form::text('name', $samples_edit->sample_name) !!}
+                            {!! Form::text('sample_name', $samples_edit->sample_name) !!}
                         </td>
                         <td>
                             {!! Form::submit('Update') !!}
