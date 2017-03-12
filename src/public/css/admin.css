@@ -25,7 +25,7 @@ body {
   min-height: 500px;
 }
 .nav-menu {
-  background-color: #222;
+  background-color: #4c8442;
 }
 .nav-menu ul {
   margin: auto 5px;
@@ -36,7 +36,7 @@ body {
   font-size: 20px;
 }
 .nav-menu ul li.active {
-  background-color: black;
+  background-color: #4c8442;
 }
 .nav-menu ul li.active a {
   color: #fff;
@@ -49,17 +49,12 @@ body {
   text-decoration: none;
 }
 .left-menu {
-  background-color: #444;
+  background-color: #43753a;
   color: #fff;
   text-transform: uppercase;
   font-weight: bold;
   padding: auto 10px;
   height: 100%;
-}
-.left-menu ul li {
-  border-bottom: 1px solid #666666;
-  border-top: 1px solid #0e0e0e;
-  padding: 10px;
 }
 .left-menu ul li.divider {
   background-color: #666666;
@@ -83,7 +78,7 @@ body {
 }
 .right-menu {
   padding: 45px 15px;
-  background-color: #444;
+  background-color: #43753a;
   height: 100%;
   color: #fff;
 }
