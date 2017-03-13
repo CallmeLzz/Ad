@@ -81,6 +81,7 @@ body {
   background-color: #43753a;
   height: 100%;
   color: #fff;
+  border: 1px solid green;
 }
 .right-menu input {
   color: #000000;
