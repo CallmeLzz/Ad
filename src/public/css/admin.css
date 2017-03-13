@@ -42,10 +42,10 @@ body {
   color: #fff;
 }
 .nav-menu ul li a {
-  color: #9d9d9d;
+  color: #fff;
 }
 .nav-menu ul li a:hover {
-  color: #fff;
+  color: red;
   text-decoration: none;
 }
 .left-menu {
