@@ -8,6 +8,7 @@
             <ul>
                 <li><a href="{{ route('admin.sample') }}"> Sample </a></li>
                 <li><a href="{{ route('admin.sample_category') }}"> Categories </a></li>
+                <li><a href="{{ route('admin.contact') }}"> Contact </a></li>
             </ul>
         </li>
         <li>

@@ -53,3 +53,8 @@ Route::get('admin/sample_category/delete', [
     'as' => 'admin_sample_category.delete',
     'uses' => 'Source\Ad\Controllers\SampleCategoryAdminController@delete'
 ]);
+
+Route::get('admin/contact', [
+    'as' => 'admin.contact',
+    'uses' => 'Source\Ad\Controllers\SendMailAdminController@index'
+]);
