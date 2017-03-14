@@ -22,6 +22,7 @@
                 <td>
                     <a href="{{ URL::route('admin_sample.edit', ['id' => $value->sample_id]) }}" class="btn btn-info pull left" style="margin-right:3px;">Edit</a>
                     <a href="{!! URL::route('admin_sample.delete',['id' =>  $value->sample_id, '_token' => csrf_token()]) !!}" class="btn btn-danger pull left submitDelete" source="">Delete</a>
+                    <a href="{{ URL::route('admin.sendmail', ['id' => $value->contact_id]) }}" class="btn btn-info pull left" style="margin-right:3px;">Send Mail</a>
                 </td>
             </tr>
             @endforeach

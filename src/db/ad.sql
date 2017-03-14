@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 14, 2017 at 02:02 AM
+-- Generation Time: Mar 14, 2017 at 03:29 AM
 -- Server version: 5.7.14
 -- PHP Version: 7.0.10
 
@@ -31,16 +31,18 @@ USE `ad`;
 DROP TABLE IF EXISTS `contacts`;
 CREATE TABLE `contacts` (
   `contact_id` int(11) NOT NULL,
-  `contact_mail` varchar(255) CHARACTER SET utf32 NOT NULL
+  `contact_mail` varchar(255) CHARACTER SET utf32 NOT NULL,
+  `contact_content` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `contacts`
 --
 
-INSERT INTO `contacts` (`contact_id`, `contact_mail`) VALUES
-(1, 'grimreaperld@gmail.com'),
-(2, 'tannhan113@gmail.com');
+INSERT INTO `contacts` (`contact_id`, `contact_mail`, `contact_content`) VALUES
+(1, 'grimreaperld@gmail.com', 'Hello there'),
+(2, 'tannhan113@gmail.com', 'Wru'),
+(3, 'ptnhuan@gmail.com', 'Hello world');
 
 -- --------------------------------------------------------
 

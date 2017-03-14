@@ -58,7 +58,12 @@ Route::get('admin/sample/export', [
     'as' => 'admin_sample.export',
     'uses' => 'Source\Ad\Controllers\SampleAdminController@exportDetail'
 ]);
+/////////////////////////////////////////////////CONTACTS//////////////////////////////////////////
 Route::get('admin/contact', [
     'as' => 'admin.contact',
     'uses' => 'Source\Ad\Controllers\SendMailAdminController@index'
+]);
+Route::get('admin/contact/sendmail', [
+    'as' => 'admin.sendmail',
+    'uses' => 'Source\Ad\Controllers\SendMailAdminController@sendMail'
 ]);

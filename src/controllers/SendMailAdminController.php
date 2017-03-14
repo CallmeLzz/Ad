@@ -6,6 +6,7 @@ use URL;
 use Route,
     Redirect;
 use Source\Ad\Models\Contacts;
+use Mail;
 Class SendMailAdminController extends Controller
 {
     public $data_view = array();
@@ -91,5 +92,27 @@ Class SendMailAdminController extends Controller
             'samples' => $sample,
         ));
         return Redirect::route("admin.sample");
+    }
+    public function sendMail(Request $request){
+        $contacts = NULL;
+        $contact_id = (int) $request->get('id');
+        if (!empty($contact_id) && (is_int($contact_id))) {
+            $contacts = $this->obj_contact->find($contact_id);
+        }
+        //var_dump($contacts->contact_content);
+        //die();
+        $data = [
+            'confirm' => 'confirm',
+            'author' => 'ADMIN',
+            'address' => $contacts->contact_mail,
+            'contents' => $contacts->contact_content
+            ];
+        Mail::send(['view' => 'mail'], $data, function($message) use ($data){
+            $message->to($data['address'])->cc($data['address'])
+                ->subject('Mail sent from '.$data['author'].'.')
+                ->setBody($data['contents']);
+            $message->from('leisureresort@gmail.com');
+        });
+        return Redirect::route("admin.contact");
     }
 }
