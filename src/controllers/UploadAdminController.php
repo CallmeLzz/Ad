@@ -95,14 +95,4 @@ Class UploadAdminController extends Controller
 
 
     
-
-
-
-
-
-
-
-
-
-
 }
