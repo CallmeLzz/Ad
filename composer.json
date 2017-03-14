@@ -1,8 +1,9 @@
 {
     "name": "source/ad",
-    "description": "First package",
+    "description": "Administrator package",
     "license": "MIT",
     "minimum-stability": "stable",
-    "require": {}
-    
+    "require": {
+    	"laravelcollective/html":"^5.3.0"
+    }
 }
