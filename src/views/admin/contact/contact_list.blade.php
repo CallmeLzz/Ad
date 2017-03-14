@@ -3,7 +3,7 @@
     <h3 style="color:red;font-weight:bold;">CONTACTS</h3>
       <!--   <label> FEATURE: </label> -->
         <a href="{{ URL::route('admin_contact.edit') }}" 
-            class="btn btn-info pull left" style="margin-right:6px;margin-bottom: 20px;float:right;">Add New Sample</a>
+            class="btn btn-info pull left" style="margin-right:6px;margin-bottom: 20px;float:right;">Add New Contacts</a>
         <a href="{{ URL::route('admin_contact.export') }}" 
             class="btn btn-info pull left" style="margin-right:6px;margin-bottom: 20px;float:right;">Export to Excel</a>
 

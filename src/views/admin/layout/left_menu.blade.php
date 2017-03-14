@@ -9,6 +9,7 @@
                 <li><a href="{{ route('admin.sample') }}"> Sample </a></li>
                 <li><a href="{{ route('admin.sample_category') }}"> Categories </a></li>
                 <li><a href="{{ route('admin.contact') }}"> Contact </a></li>
+                <li><a href="{{ route('admin.image') }}"> Images </a></li>
             </ul>
         </li>
         <li>

@@ -89,3 +89,28 @@ Route::get('admin/contact/delete', [
     'as' => 'admin_contact.delete',
     'uses' => 'Source\Ad\Controllers\SendMailAdminController@delete'
 ]);
+
+/////////////////////////////////UPLOAD///////////////////////////////////////////////////////////
+// List
+Route::get('admin/image', [
+    'as' => 'admin.image',
+    'uses' => 'Source\Ad\Controllers\UploadAdminController@index'
+]);
+
+// Edit view
+Route::get('admin/image/edit', [
+    'as' => 'admin_image.edit',
+    'uses' => 'Source\Ad\Controllers\UploadAdminController@edit'
+]);
+
+// Edit
+Route::post('admin/image/edit', [
+    'as' => 'admin_image.post',
+    'uses' => 'Source\Ad\Controllers\UploadAdminController@post'
+]);
+
+// Delete
+Route::get('admin/image/delete', [
+    'as' => 'admin_image.delete',
+    'uses' => 'Source\Ad\Controllers\UploadAdminController@delete'
+]);
