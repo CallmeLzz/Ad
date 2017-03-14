@@ -53,7 +53,7 @@ Route::get('admin/sample_category/delete', [
     'as' => 'admin_sample_category.delete',
     'uses' => 'Source\Ad\Controllers\SampleCategoryAdminController@delete'
 ]);
-//////////////////////////////////////////////////EXPORT SAMPLE//////////////////////////////////////
+//////////////////////////////////////////////////FULL EXPORT//////////////////////////////////////
 Route::get('admin/sample/export', [
     'as' => 'admin_sample.export',
     'uses' => 'Source\Ad\Controllers\SampleAdminController@exportSample'
@@ -62,7 +62,30 @@ Route::get('admin/sample_category/export', [
     'as' => 'admin_sample_category.export',
     'uses' => 'Source\Ad\Controllers\SampleCategoryAdminController@exportCategory'
 ]);
+Route::get('admin/contact/export', [
+    'as' => 'admin_contact.export',
+    'uses' => 'Source\Ad\Controllers\SendMailAdminController@exportContact'
+]);
+
+//////////////////////////////////////////////CONTACT////////////////////////////////////////////////
 Route::get('admin/contact', [
     'as' => 'admin.contact',
     'uses' => 'Source\Ad\Controllers\SendMailAdminController@index'
+]);
+// Edit view
+Route::get('admin/contact/edit', [
+    'as' => 'admin_contact.edit',
+    'uses' => 'Source\Ad\Controllers\SendMailAdminController@edit'
+]);
+
+// Edit
+Route::post('admin/contact/edit', [
+    'as' => 'admin_contact.post',
+    'uses' => 'Source\Ad\Controllers\SendMailAdminController@post'
+]);
+
+// Delete
+Route::get('admin/contact/delete', [
+    'as' => 'admin_contact.delete',
+    'uses' => 'Source\Ad\Controllers\SendMailAdminController@delete'
 ]);

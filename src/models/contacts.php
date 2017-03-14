@@ -39,21 +39,21 @@ class Contacts extends Model {
      * @param type $contact_id
      * @return type
      */
-    public function update_sample($input, $contact_id = NULL) {
+    public function update_contact($input, $contact_id = NULL) {
 
         if (empty($contact_id)) {
             $contact_id = $input['contact_id'];
         }
 
-        $sample = self::find($contact_id);
+        $contact = self::find($contact_id);
 
-        if (!empty($sample)) {
+        if (!empty($contact)) {
 
-            $sample->contact_mail = $input['contact_mail'];
+            $contact->contact_mail = $input['contact_mail'];
 
-            $sample->save();
+            $contact->save();
 
-            return $sample;
+            return $contact;
         } else {
             return NULL;
         }
@@ -64,11 +64,22 @@ class Contacts extends Model {
      * @param type $input
      * @return type
      */
-    public function add_sample($input) {
+    public function add_contact($input) {
 
-        $sample = self::create([
+        $contact = self::create([
                     'contact_mail' => $input['contact_mail'],
         ]);
-        return $sample;
+        return $contact;
     }
+
+    public function exportContact(){
+        return Contacts::select('contact_id', 'contact_mail')->get();
+    }
+
+
+
+
+
+
+
 }

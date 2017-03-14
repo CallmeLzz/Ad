@@ -1,21 +1,21 @@
 <div class="admin-content">
     <div class="main">
-    <h3> Home Page - Update Menu </h3>
+    <h3> Home Page - Update Contact</h3>
         <table style="width: 100%">
             <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th>Mail</th>
                 <th>Operations</th>
             </tr>
-            {!! Form::open(['route'=>['admin_sample.post', 'id' => @$samples_edit->sample_id],  'files'=>true, 'method' => 'post'])  !!}
+            {!! Form::open(['route'=>['admin_contact.post', 'id' => @$contacts_edit->contact_id],  'files'=>true, 'method' => 'post'])  !!}
                 <tr>
-                    <td>{!! $samples_edit->sample_id !!}</td>
+                    <td>{!! $contacts_edit->contact_id !!}</td>
                     <td>
-                        {!! Form::text('sample_name', $samples_edit->sample_name) !!}
+                        {!! Form::text('contact_mail', $contacts_edit->contact_mail) !!}
                     </td>
                     <td>
                         {!! Form::submit('Update', ['class' => 'btn btn-info']) !!}
-                        <a href="{{ URL::route('admin.sample') }}">{!! Form::button('Cancel', ['class' => 'btn btn-danger']) !!}</a>
+                        <a href="{{ URL::route('admin.contact') }}">{!! Form::button('Cancel', ['class' => 'btn btn-danger']) !!}</a>
                     </td>
                 </tr>
             {!! Form::close() !!}

@@ -7,20 +7,20 @@
 	@stop
 @endif
 
-@if(isset($samples_edit))
-	@section('title', 'Admin Sample  - Edit')
+@if(isset($contacts_edit))
+	@section('title', 'Admin Contact  - Edit')
 	@section('main-content')
-		@include('ad::admin.sample.sample_edit')
+		@include('ad::admin.contact.contact_edit')
 	@stop
 @endif
 
-@if(!isset($samples_edit))
-	@section('title', 'Admin Sample  - Add')
+@if(!isset($contacts_edit))
+	@section('title', 'Admin Contact  - Add')
 	@section('main-content')
-		@include('ad::admin.sample.sample_add')
+		@include('ad::admin.contact.contact_add')
 	@stop
 @endif
 
 @section('right-menu')
-		@include('ad::admin.sample.sample_search')
+		@include('ad::admin.contact.contact_search')
 @stop

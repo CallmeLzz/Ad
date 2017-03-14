@@ -1,14 +1,14 @@
 <div class="admin-content">
     <div class="main">
-    <h3> Home Page - Add Menu </h3>
+    <h3> Home Page - Add Contact </h3>
     @if(isset($message))
         <label><font color="red"><?php echo $message; ?></font></label>
     @endif
         <table style="width: 100%">
-            {!! Form::open(['route'=> 'admin_sample.post', 'files'=>true, 'method' => 'post'])  !!}
+            {!! Form::open(['route'=> 'admin_contact.post', 'files'=>true, 'method' => 'post'])  !!}
                 <tr>
                     <th> {!! Form::label('Name') !!} </th>
-                    <td> {!! Form::text('sample_name', null, array('autofocus' => 'autofocus')) !!} </td>
+                    <td> {!! Form::text('contact_mail', null, array('autofocus' => 'autofocus')) !!} </td>
                 </tr>
                 <tr>
                     <th>Operations</th>

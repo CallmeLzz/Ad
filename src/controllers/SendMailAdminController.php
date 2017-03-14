@@ -3,6 +3,7 @@ namespace Source\Ad\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use URL;
+use Excel;
 use Route,
     Redirect;
 use Source\Ad\Models\Contacts;
@@ -29,34 +30,34 @@ Class SendMailAdminController extends Controller
      * @return type
      */
     public function edit(Request $request) {
-        $samples_edit = NULL;
-        $sample_id = (int) $request->get('id');
-        if (!empty($sample_id) && (is_int($sample_id))) {
-            $samples_edit = $this->obj_sample->find($sample_id);
+        $contacts_edit = NULL;
+        $contact_id = (int) $request->get('id');
+        if (!empty($contact_id) && (is_int($contact_id))) {
+            $contacts_edit = $this->obj_contact->find($contact_id);
         }
-        if ($samples_edit != NULL){
+        if ($contacts_edit != NULL){
             $this->data_view = array_merge($this->data_view, array(
-                'samples_edit' => $samples_edit,
+                'contacts_edit' => $contacts_edit,
                 'request' => $request
             ));
-            return view('ad::admin.sample.sample_index', $this->data_view);
+            return view('ad::admin.contact.contact_index', $this->data_view);
         }
         else {
-            return view('ad::admin.sample.sample_index');
+            return view('ad::admin.contact.contact_index');
         }
         
     }
     public function post(Request $request){
         $input = $request->all();
-        $sample_id = (int) $request->get('id');
-        $sample = NULL;
-        if (!empty($sample_id) && is_int($sample_id)) {
-                $sample = $this->obj_sample->find($sample_id);
-                if (!empty($sample)) {
+        $contact_id = (int) $request->get('id');
+        $contact = NULL;
+        if (!empty($contact_id) && is_int($contact_id)) {
+                $contact = $this->obj_contact->find($contact_id);
+                if (!empty($contact)) {
                     //success
-                    $input['sample_id'] = $sample_id;
-                    $sample = $this->obj_sample->update_sample($input);
-                    return Redirect::route("admin.sample", ["id" => $sample->sample_id]);
+                    $input['contact_id'] = $contact_id;
+                    $contact = $this->obj_contact->update_contact($input);
+                    return Redirect::route("admin.contact", ["id" => $contact->contact_id]);
                 } else {
                     //fail
                     
@@ -64,10 +65,10 @@ Class SendMailAdminController extends Controller
         } 
         else {
             //ADD
-            $sample = $this->obj_sample->add_sample($input);
-            if (!empty($sample)) {
+            $contact = $this->obj_contact->add_contact($input);
+            if (!empty($contact)) {
                 //success
-                return Redirect::route("admin.sample", ["id" => $sample->sample_id]);
+                return Redirect::route("admin.contact", ["id" => $contact->contact_id]);
             } else {
                 //fail
             }
@@ -75,21 +76,39 @@ Class SendMailAdminController extends Controller
     }
     
     public function delete(Request $request) {
-        $sample = NULL;
-        $sample_id = $request->get('id');
-        if (!empty($sample_id)) {
-            $sample = $this->obj_sample->find($sample_id);
-            if (!empty($sample)) {
+        $contact = NULL;
+        $contact_id = $request->get('id');
+        if (!empty($contact_id)) {
+            $contact = $this->obj_contact->find($contact_id);
+            if (!empty($contact)) {
                   //Message
-                // \Session::flash('message', trans('sample::sample_admin.message_delete_successfully'));
-                $sample->delete();
+                // \Session::flash('message', trans('contact::contact_admin.message_delete_successfully'));
+                $contact->delete();
             }
         } else {
         }
         
         $this->data_view = array_merge($this->data_view, array(
-            'samples' => $sample,
+            'contacts' => $contact,
         ));
-        return Redirect::route("admin.sample");
+        return Redirect::route("admin.contact");
     }
+
+     public function exportContact(){
+        $contact = new Contacts();
+        $result_contact = $contact->exportContact();
+        
+        Excel::create('contacts', function($excel) use($result_contact){
+            $excel->sheet('ContactSheet', function($sheet) use($result_contact){
+                $sheet->fromArray($result_contact);
+            });
+        })->export('xls');
+    }
+
+
+
+
+
+
+
 }
