@@ -3,6 +3,7 @@ namespace Source\Ad\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use URL;
+use Excel;
 use Route,
     Redirect;
 use Source\Ad\Models\Samples;
@@ -92,4 +93,26 @@ Class SampleAdminController extends Controller
         ));
         return Redirect::route("admin.sample");
     }
+
+
+    public function exportDetail(){
+        $sample = new Samples();
+        $result_sample = $sample->exportSample();
+        
+        Excel::create('samples', function($excel) use($result_sample){
+            $excel->sheet('SampleSheet', function($sheet) use($result_sample){
+                $sheet->fromArray($result_sample);
+            });
+        })->export('xls');
+    }
+
+
+
+
+
+
+
+
+
+
 }

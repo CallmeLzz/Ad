@@ -71,4 +71,15 @@ class Samples extends Model {
         ]);
         return $sample;
     }
+
+    public function exportSample(){
+        return Samples::select('sample_id', 'sample_name')->get();
+    }
+
+
+
+
+
+
+
 }
