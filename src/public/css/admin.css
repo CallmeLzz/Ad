@@ -25,7 +25,7 @@ body {
   min-height: 500px;
 }
 .nav-menu {
-  background-color: #4c8442;
+  background-color: #4dbfa1;
 }
 .nav-menu ul {
   margin: auto 5px;
@@ -36,7 +36,7 @@ body {
   font-size: 20px;
 }
 .nav-menu ul li.active {
-  background-color: #4c8442;
+  background-color: #4dbfa1;
 }
 .nav-menu ul li.active a {
   color: #fff;
@@ -50,7 +50,7 @@ body {
   text-decoration: none;
 }
 .left-menu {
-  background-color: #43753a;
+  background-color: #3ea98d;
   color: #fff;
   text-transform: uppercase;
   font-weight: bold;
@@ -79,10 +79,9 @@ body {
 }
 .right-menu {
   padding: 45px 15px;
-  background-color: #43753a;
+  background-color: #3ea98d;
   height: 100%;
   color: #fff;
-  border: 1px solid green;
 }
 .right-menu input {
   color: #000000;

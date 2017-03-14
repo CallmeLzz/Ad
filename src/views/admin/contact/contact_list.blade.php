@@ -1,6 +1,6 @@
 <div class="admin-content">
     <div class="main">
-    <h3 style="color:red;font-weight:bold;">SAMPLES</h3>
+    <h3 style="color:red;font-weight:bold;">CONTACTS</h3>
       <!--   <label> FEATURE: </label> -->
         <a href="{{ URL::route('admin_sample.edit') }}" 
             class="btn btn-info pull left" style="margin-right:6px;margin-bottom: 20px;float:right;">Add New Sample</a>
