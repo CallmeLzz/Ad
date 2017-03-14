@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 10, 2017 at 12:59 PM
+-- Generation Time: Mar 14, 2017 at 02:02 AM
 -- Server version: 5.7.14
--- PHP Version: 5.6.25
+-- PHP Version: 7.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,8 +19,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `ad`
 --
-CREATE DATABASE IF NOT EXISTS `ad` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CREATE DATABASE IF NOT EXISTS `ad` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `ad`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacts`
+--
+
+DROP TABLE IF EXISTS `contacts`;
+CREATE TABLE `contacts` (
+  `contact_id` int(11) NOT NULL,
+  `contact_mail` varchar(255) CHARACTER SET utf32 NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `contacts`
+--
+
+INSERT INTO `contacts` (`contact_id`, `contact_mail`) VALUES
+(1, 'grimreaperld@gmail.com'),
+(2, 'tannhan113@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -72,6 +92,12 @@ INSERT INTO `samples_categories` (`sample_category_id`, `sample_category_name`) 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `contacts`
+--
+ALTER TABLE `contacts`
+  ADD PRIMARY KEY (`contact_id`);
 
 --
 -- Indexes for table `samples`
