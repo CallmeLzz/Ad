@@ -3,9 +3,11 @@
     <h3 style="color:red;font-weight:bold;">CONTACTS</h3>
       <!--   <label> FEATURE: </label> -->
         <a href="{{ URL::route('admin_sample.edit') }}" 
-            class="btn btn-info pull left" style="margin-right:6px;margin-bottom: 20px;float:right;">Add New Sample</a>
+            class="btn btn-danger pull left" style="margin-right:6px;margin-bottom: 20px;float:right;">Add New Sample</a>
         <a href="" 
             class="btn btn-info pull left" style="margin-right:6px;margin-bottom: 20px;float:right;">Export to Excel</a>
+        <a href="{{ URL::route('admin_sample.edit') }}" 
+            class="btn btn-danger pull left" style="margin-right:6px;margin-bottom: 20px;float:right;">Send Mail All</a>
 
         <table style="width: 100%">
             <tr>

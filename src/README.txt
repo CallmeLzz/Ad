@@ -28,3 +28,14 @@ Source: https://laravelcollective.com/docs/5.3/html
 	      'Html' => Collective\Html\HtmlFacade::class,
 	    // ...
 	  ],
+
+/*========================================*/
+Add Send Mail
+
+Open .env
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=lersureresort@gmail.com
+MAIL_PASSWORD=hikarinomai
+MAIL_ENCRYPTION=tls
