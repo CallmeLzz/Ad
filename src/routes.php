@@ -56,7 +56,11 @@ Route::get('admin/sample_category/delete', [
 //////////////////////////////////////////////////EXPORT SAMPLE//////////////////////////////////////
 Route::get('admin/sample/export', [
     'as' => 'admin_sample.export',
-    'uses' => 'Source\Ad\Controllers\SampleAdminController@exportDetail'
+    'uses' => 'Source\Ad\Controllers\SampleAdminController@exportSample'
+]);
+Route::get('admin/sample_category/export', [
+    'as' => 'admin_sample_category.export',
+    'uses' => 'Source\Ad\Controllers\SampleCategoryAdminController@exportCategory'
 ]);
 Route::get('admin/contact', [
     'as' => 'admin.contact',

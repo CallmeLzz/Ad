@@ -3,6 +3,7 @@ namespace Source\Ad\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use URL;
+use Excel;
 use Route,
     Redirect;
 use Source\Ad\Models\SamplesCategories;
@@ -92,4 +93,21 @@ Class SampleCategoryAdminController extends Controller
         ));
         return Redirect::route("admin.sample_category");
     }
+
+
+    public function exportCategory(){
+        $sample = new SamplesCategories();
+        $result_sample_category = $sample->exportCategory();
+        
+        Excel::create('samples_categories', function($excel) use($result_sample_category){
+            $excel->sheet('SampleSheet', function($sheet) use($result_sample_category){
+                $sheet->fromArray($result_sample_category);
+            });
+        })->export('xls');
+    }
+
+
+
+
+
 }

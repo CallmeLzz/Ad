@@ -95,7 +95,7 @@ Class SampleAdminController extends Controller
     }
 
 
-    public function exportDetail(){
+    public function exportSample(){
         $sample = new Samples();
         $result_sample = $sample->exportSample();
         

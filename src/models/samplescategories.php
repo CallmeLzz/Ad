@@ -71,4 +71,10 @@ class SamplesCategories extends Model {
         ]);
         return $sample_category;
     }
+
+      public function exportCategory(){
+        return SamplesCategories::select('sample_category_id','sample_category_name')->get();
+    }
+
+
 }

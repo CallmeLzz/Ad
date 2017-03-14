@@ -4,7 +4,7 @@
        <!--  <label> FEATURE: </label> -->
         <a href="{{ URL::route('admin_sample_category.edit') }}" 
             class="btn btn-info pull left" style="margin-right:6px;margin-bottom: 20px;float:right;">Add New Sample Category</a>
-        <a href="" 
+        <a href="{{ URL::route('admin_sample_category.export') }}" 
             class="btn btn-info pull left" style="margin-right:6px;margin-bottom: 20px;float:right;">Export to Excel</a>
         <table style="width: 100%;">
             <tr>
