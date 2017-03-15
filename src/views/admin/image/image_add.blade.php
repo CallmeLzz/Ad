@@ -1,7 +1,7 @@
 
 <div class="admin-content">
     <div class="main">
-    <h3> Home Page - Add Image </h3>
+    <h3> Home Page - Add Images </h3>
     @if(isset($message))
         <label><font color="red"><?php echo $message; ?></font></label>
     @endif
@@ -9,7 +9,12 @@
             {!! Form::open(['route'=> 'admin_image.post', 'files'=>true, 'method' => 'post'])  !!}
                 <tr>
                     <th> {!! Form::label('Name') !!} </th>
-                    <td> {!! Form::file('img_name',array('class' => 'form-control')) !!} </td>
+                    <td> {!! Form::text('img_name', null, array('autofocus' => 'autofocus')) !!} </td                   
+                </tr>
+                 <tr>
+                    
+                    <th> {!! Form::label('Image') !!} </th>
+                    <td> {!! Form::file('img_url',array('class' => 'form-control')) !!} </td>
                 </tr>
                 <tr>
                     <th>Operations</th>

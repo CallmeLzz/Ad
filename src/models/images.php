@@ -3,13 +3,14 @@
 namespace Source\Ad\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Http\Request;
 class Images extends Model {
 
     protected $table = 'images';
     public $timestamps = false;
     protected $fillable = [
-        'img_name'
+        'img_name',
+        'img_url'
     ];
     protected $primaryKey = 'img_id';
 
@@ -68,21 +69,23 @@ class Images extends Model {
 
         $image = self::create([
                     'img_name' => $input['img_name'],
+                    'img_url' => $input['img_url']
         ]);
         return $image;
     }
 
-     public function updateImg($update_id, $update_name) {
-            if ($update_img == null){
-                Images::where('img_id', $update_id)->update(array(                  
-                    'img_name' => $update_name,                    
-            ));
-            }
-            else {
-                Images::where('img_id', $update_id)->update(array(
-                    'img_name' => 'images/'.$update_img,                                                  
+     public function updateImg($img_id, $img_name,$img_url) {
+            if ($img_url == null){
+                Images::where('img_id', $img_id)->update(array(
+                    'img_name' => $img_name                                               
                     ));
-            }   
+            }else
+            {
+                Images::where('img_id', $img_id)->update(array(
+                    'img_name' => $img_name, 
+                    'img_url' => $img_url                                                 
+                    ));
+            }
     }
 
 

@@ -6,6 +6,7 @@ use URL;
 use Route,
     Redirect;
 use Source\Ad\Models\Images;
+use Illuminate\Support\Facades\Input;
 Class UploadAdminController extends Controller
 {
     public $data_view = array();
@@ -47,16 +48,25 @@ Class UploadAdminController extends Controller
         
     }
     public function post(Request $request){
-        $input = $request->all();
+
         $img_id = (int) $request->get('id');
+        $img = Input::file('img_url');
+        $img_name = $request->input('img_name');
         $image = NULL;
         if (!empty($img_id) && is_int($img_id)) {
                 $image = $this->obj_images->find($img_id);
                 if (!empty($image)) {
                     //success
-                    $input['imag_id'] = $img_id;
-                    $image = $this->obj_image->update_image($input);
-                    return Redirect::route("admin.image", ["id" => $image->image_id]);
+                    $input['img_id'] = $img_id;
+                     if ($img != null){
+                        $this->deletePicture($img_id);
+
+                        $image->updateImg($img_id,$img_name,$this->uploadPicture('img_url'));
+                    }
+                    else{
+                        $image->updateImg($img_id,$img_name,null);
+                    }
+                    return Redirect::route("admin.image", ["id" => $image->img_id]);
                 } else {
                     //fail
                     
@@ -64,20 +74,23 @@ Class UploadAdminController extends Controller
         } 
         else {
             //ADD
-                //$image = $this->obj_image->add_image($input);
+                $image = new Images($request->input()) ;
+                
                 if (!empty($image)) {
                     //success
-                     $this->validate($request, [          
-                        'img_name' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                     $this->validate($request, [ 
+
+                        'img_url' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                       
                     ]);
-                    $image = new Images($request->input()) ;
-                 
-                    if($file = $request->hasFile('img_name')) {                   
-                        $file = $request->file('img_name') ;                   
+                                   
+                    if($file = $request->hasFile('img_url')) {                   
+                        $file = $request->file('img_url') ;                   
                         $fileName = $file->getClientOriginalName() ;
                         $destinationPath = public_path().'/images/' ;
                         $file->move($destinationPath,$fileName);
-                        $image->img_name = $fileName ;
+                        $image->img_url = $fileName ;
+                        $image->img_name = $img_name ;
                     }
                     $image->save() ;
                      return redirect()->route('admin.image',["id" => $image->img_id])
@@ -107,26 +120,33 @@ Class UploadAdminController extends Controller
         return Redirect::route("admin.image");
     }
 
-    ///////////////////////////////////////////////////////////////////
-    public function store(Request $request) {
-        
-        $this->validate($request, [          
-            'img_name' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-        $image = new Images($request->input()) ;
-     
-         if($file = $request->hasFile('img_name')) {
-            
-            $file = $request->file('img_name') ;
-            
-            $fileName = $file->getClientOriginalName() ;
-            $destinationPath = public_path().'/images/' ;
-            $file->move($destinationPath,$fileName);
-            $image->img_name = $fileName ;
+ 
+
+    /*=============================== UPLOAD PICTURES ===============================*/
+    public function uploadPicture($img){
+        $img_name = null;
+        if (Input::hasfile($img)) {
+            $destinationPath = 'images/';
+            $extension = Input::file($img)->getClientOriginalExtension();
+            $fileName = rand(11111,99999).'.'.$extension;
+            $img_name = $fileName;
+            Input::file($img)->move($destinationPath, $fileName);
         }
-        $image->save() ;
-         return redirect()->route('admin.image')
-                        ->with('success','You have successfully uploaded your files');
+        return $img_name;
     }
-    
+/*=============================== DELETE PICTURES ===============================*/
+    public function deletePicture($id){
+        $picName = null;
+        $images = new Images();
+        $dataPic = $images->get_image($id);
+        foreach ($dataPic as $key => $value) {
+            $picName = $value->img_url;
+        }
+        $checkFile = file_exists(public_path() . '/' . $picName);
+        if ($checkFile){
+            unlink(public_path() . '/' . $picName);
+        }
+    }
+
+
 }

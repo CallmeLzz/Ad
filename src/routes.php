@@ -108,7 +108,7 @@ Route::get('admin/image/edit', [
 // Edit
 Route::post('admin/image/edit', [
     'as' => 'admin_image.post',
-    'uses' => 'Source\Ad\Controllers\UploadAdminController@store'
+    'uses' => 'Source\Ad\Controllers\UploadAdminController@post'
 ]);
 
 // Delete
