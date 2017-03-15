@@ -75,7 +75,7 @@ class Images extends Model {
      public function updateImg($update_id, $update_name) {
             if ($update_img == null){
                 Images::where('img_id', $update_id)->update(array(                  
-                    'fimg_name' => $update_name,                    
+                    'img_name' => $update_name,                    
             ));
             }
             else {

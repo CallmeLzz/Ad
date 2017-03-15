@@ -11,7 +11,8 @@
                 <tr>
                     <td>{!! $images_edit->img_id !!}</td>
                     <td>
-                        {!! Form::text('img_name', $images_edit->img_name) !!}
+                        <img src='{{ asset("images/$images_edit->img_name") }}' style="width:100%;">{{ $images_edit->img_name}}                     
+                        {!! Form::file('img_name',array('class' => 'form-control')) !!}
                     </td>
                     <td>
                         {!! Form::submit('Update', ['class' => 'btn btn-info']) !!}

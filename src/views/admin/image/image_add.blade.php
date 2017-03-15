@@ -9,7 +9,7 @@
             {!! Form::open(['route'=> 'admin_image.post', 'files'=>true, 'method' => 'post'])  !!}
                 <tr>
                     <th> {!! Form::label('Name') !!} </th>
-                    <td> {!! Form::text('img_name', null, array('autofocus' => 'autofocus')) !!} </td>
+                    <td> {!! Form::file('img_name',array('class' => 'form-control')) !!} </td>
                 </tr>
                 <tr>
                     <th>Operations</th>

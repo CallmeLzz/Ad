@@ -108,7 +108,7 @@ Route::get('admin/image/edit', [
 // Edit
 Route::post('admin/image/edit', [
     'as' => 'admin_image.post',
-    'uses' => 'Source\Ad\Controllers\UploadAdminController@post'
+    'uses' => 'Source\Ad\Controllers\UploadAdminController@store'
 ]);
 
 // Delete
@@ -116,3 +116,4 @@ Route::get('admin/image/delete', [
     'as' => 'admin_image.delete',
     'uses' => 'Source\Ad\Controllers\UploadAdminController@delete'
 ]);
+Route::resource('upload-files','UploadAdminController');
