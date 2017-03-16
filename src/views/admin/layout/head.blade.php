@@ -4,5 +4,6 @@
 <link href="{{asset('source/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
 <link href="{{asset('source/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css"/>
 <link href="{{asset('source/css/admin.css')}}" rel="stylesheet" type="text/css"/>
+
                                 <!--JavaScripts-->
 <!-- ======================================================================= -->
